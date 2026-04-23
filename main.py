@@ -15,6 +15,7 @@ def run_phase(name, fn):
         sys.exit(1)
 
 def phase_scrape():
+    subprocess.run(['npm', 'install', '--prefer-offline'], check=True)
     result = subprocess.run(['node', 'scraper.js'], capture_output=False)
     if result.returncode != 0:
         raise RuntimeError("Scraper failed")
