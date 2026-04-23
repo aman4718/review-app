@@ -1,0 +1,13 @@
+{
+  "name": "chatgpt-review-analyser",
+  "version": "1.0.0",
+  "description": "Play Store review scraper for ChatGPT India",
+  "main": "scraper.js",
+  "scripts": {
+    "scrape": "node scraper.js"
+  },
+  "dependencies": {
+    "google-play-scraper": "^9.1.0",
+    "csv-writer": "^1.6.0"
+  }
+}

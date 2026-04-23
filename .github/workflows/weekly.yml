@@ -1,0 +1,41 @@
+name: Weekly Review Pulse
+
+on:
+  schedule:
+    - cron: "30 1 * * 1"   # 01:30 UTC = 07:00 IST every Monday
+  workflow_dispatch:        # allow manual trigger from GitHub UI
+
+jobs:
+  pulse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node 18
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Node dependencies
+        run: npm install
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run pipeline
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          RECIPIENT_EMAIL: ${{ secrets.RECIPIENT_EMAIL }}
+        run: python main.py
+
+      - name: Upload pulse report as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: weekly-pulse
+          path: output/

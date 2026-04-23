@@ -1,0 +1,12 @@
+sentence-transformers==3.0.1
+scikit-learn==1.8.0
+pandas==2.2.3
+groq==0.28.0
+python-dotenv==1.0.1
+jinja2==3.1.3
+markdown
+python-dateutil==2.9.0.post0
+numpy
+xhtml2pdf>=0.2.11
+streamlit>=1.35.0
+plotly>=5.22.0

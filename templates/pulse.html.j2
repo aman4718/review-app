@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  body { font-family: Arial, sans-serif; max-width: 680px; margin: 0 auto; padding: 24px; color: #1a1a1a; }
+  h1 { color: #10a37f; border-bottom: 2px solid #10a37f; padding-bottom: 8px; }
+  h2 { color: #333; margin-top: 28px; }
+  h3 { color: #10a37f; margin-bottom: 4px; }
+  .week { color: #888; font-size: 14px; margin-top: -8px; }
+  .summary { background: #f0faf6; border-left: 4px solid #10a37f; padding: 12px 16px; border-radius: 4px; }
+  .theme { background: #fafafa; border: 1px solid #e5e5e5; border-radius: 8px; padding: 16px; margin: 16px 0; }
+  .sentiment { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 12px; font-weight: bold; }
+  .positive { background: #d4edda; color: #155724; }
+  .negative { background: #f8d7da; color: #721c24; }
+  .mixed { background: #fff3cd; color: #856404; }
+  blockquote { border-left: 3px solid #ccc; margin: 8px 0; padding: 4px 12px; color: #555; font-style: italic; }
+  .action { background: #e8f4fd; border-left: 4px solid #0d6efd; padding: 8px 12px; border-radius: 4px; margin-top: 8px; }
+  ol { padding-left: 20px; }
+  li { margin: 6px 0; }
+  .footer { text-align: center; color: #aaa; font-size: 12px; margin-top: 32px; border-top: 1px solid #eee; padding-top: 12px; }
+</style>
+</head>
+<body>
+
+<h1>ChatGPT India — Weekly Review Pulse</h1>
+<p class="week">Week: {{ pulse.week }}</p>
+
+<div class="summary">
+  <strong>Executive Summary</strong><br>
+  {{ pulse.executive_summary }}
+</div>
+
+<h2>Top Themes</h2>
+
+{% for theme in pulse.top_themes[:3] %}
+<div class="theme">
+  <h3>{{ loop.index }}. {{ theme.theme_name }}
+    <span class="sentiment {{ theme.sentiment }}">{{ theme.sentiment | capitalize }}</span>
+  </h3>
+  <p>{{ theme.summary }}</p>
+  <strong>User Quotes:</strong>
+  {% for quote in theme.top_quotes %}
+  <blockquote>{{ quote }}</blockquote>
+  {% endfor %}
+  <div class="action"><strong>Action:</strong> {{ theme.action_item }}</div>
+</div>
+{% endfor %}
+
+<h2>Top 3 Product Actions</h2>
+<ol>
+{% for action in pulse.top_3_actions %}
+  <li>{{ action }}</li>
+{% endfor %}
+</ol>
+
+<div class="footer">
+  Generated automatically &bull; ChatGPT India Review Pipeline &bull; {{ pulse.week }}
+</div>
+
+</body>
+</html>

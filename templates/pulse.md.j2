@@ -1,0 +1,29 @@
+# ChatGPT India — Weekly Review Pulse
+**Week:** {{ pulse.week }}
+
+## Executive Summary
+{{ pulse.executive_summary }}
+
+---
+
+## Top Themes
+
+{% for theme in pulse.top_themes[:3] %}
+### {{ loop.index }}. {{ theme.theme_name }} ({{ theme.sentiment | capitalize }})
+{{ theme.summary }}
+
+**Top Quotes:**
+{% for quote in theme.top_quotes %}
+> "{{ quote }}"
+{% endfor %}
+
+**Action:** {{ theme.action_item }}
+
+{% endfor %}
+
+---
+
+## Top 3 Actions
+{% for action in pulse.top_3_actions %}
+{{ loop.index }}. {{ action }}
+{% endfor %}
