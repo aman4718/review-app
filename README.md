@@ -1,3 +1,14 @@
+---
+title: ChatGPT India Review Pulse
+emoji: 📊
+colorFrom: blue
+colorTo: purple
+sdk: streamlit
+sdk_version: 1.45.0
+app_file: app.py
+pinned: false
+---
+
 # ChatGPT India — App Review Insights Analyser
 
 Automated weekly pipeline: Play Store reviews → BERTopic clusters → Groq LLM pulse → Email via Resend.
