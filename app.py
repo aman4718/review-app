@@ -319,7 +319,7 @@ if generate:
     ]
     status_box = st.empty()
     progress   = st.progress(0)
-    with st.expander("📋 Live logs", expanded=True):
+    with st.expander("📋 Details", expanded=False):
         log_box = st.empty()
 
     all_ok = True
