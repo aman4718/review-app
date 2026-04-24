@@ -1,5 +1,5 @@
 import pandas as pd
-from sentence_transformers import SentenceTransformer
+from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.cluster import KMeans
 import numpy as np
 import os
@@ -14,8 +14,8 @@ def run_clustering():
 
     print(f"Loaded {len(df)} reviews. Embedding...")
 
-    model = SentenceTransformer('all-MiniLM-L6-v2')
-    embeddings = model.encode(df['review_text'].tolist(), show_progress_bar=True)
+    vectorizer = TfidfVectorizer(max_features=500, stop_words='english')
+    embeddings = vectorizer.fit_transform(df['review_text'].tolist()).toarray()
 
     # Force exactly 5 clusters with KMeans for reliability
     print("Clustering into 5 themes...")
